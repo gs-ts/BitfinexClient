@@ -2,6 +2,8 @@ package gts.bitfinex.data.network
 
 import android.annotation.SuppressLint
 
+import java.util.concurrent.TimeUnit
+
 import com.tinder.scarlet.WebSocket
 
 import io.reactivex.Flowable
@@ -56,6 +58,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeOrderBook()
             .subscribeOn(Schedulers.io())
+            .debounce(100, TimeUnit.MILLISECONDS) // slow down a bit
             .filter{ orderBook ->
                 orderBook[2].toInt() != 0 // COUNT=0 means that you have to remove the price level from your book.
             }

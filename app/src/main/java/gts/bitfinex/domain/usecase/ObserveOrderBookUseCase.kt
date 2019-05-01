@@ -15,10 +15,9 @@ class ObserveOrderBookUseCase(private val bitfinexService: BitfinexService) {
             event = SubscribeEntity.SUBSCRIBE_EVENT,
             channel = SubscribeEntity.ORDER_BOOK_CHANNEL,
             pair = SubscribeEntity.BTCUSD_PAIR,
-            frequency = SubscribeEntity.FREQUENCY_ONE
+            frequency = SubscribeEntity.FREQUENCY_ZERO
         )
         return bitfinexService.subscribeAndObserveOrderBook(subscribeOrderBook)
-//            .subscribeOn(Schedulers.computation())
             .map { orderBook -> orderBook.toOrderBookModel() }
     }
 }
