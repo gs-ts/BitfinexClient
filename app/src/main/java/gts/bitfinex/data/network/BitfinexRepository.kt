@@ -38,9 +38,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeTicker()
             .subscribeOn(Schedulers.io())
-            .map {
-                    t -> t.toTickerData()
-            }
+            .map { ticker -> ticker.toTickerData() }
     }
 
     override fun subscribeAndObserveOrderBook(subscribe: SubscribeOrderBookEntity): Flowable<OrderBookData> {
@@ -58,9 +56,9 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeOrderBook()
             .subscribeOn(Schedulers.io())
-            .filter{
-                it[2].toInt() != 0 // COUNT=0 means that you have to remove the price level from your book.
+            .filter{ orderBook ->
+                orderBook[2].toInt() != 0 // COUNT=0 means that you have to remove the price level from your book.
             }
-            .map { t -> t.toOrderBookData() }
+            .map { orderBook -> orderBook.toOrderBookData() }
     }
 }
