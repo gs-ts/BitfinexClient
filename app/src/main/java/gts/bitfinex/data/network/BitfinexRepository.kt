@@ -23,8 +23,6 @@ import timber.log.Timber
 @SuppressLint("CheckResult")
 class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService {
 
-//    private lateinit var chanId: String
-
     override fun subscribeAndObserveTicker(subscribe: SubscribeTickerEntity): Flowable<TickerData> {
         Timber.d("===> subscribeAndObserveTicker")
         bitfinexApi.openWebSocketEvent()
@@ -60,23 +58,9 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeOrderBook()
             .subscribeOn(Schedulers.io())
+            .filter{
+                it[2].toInt() != 0 // COUNT=0 means that you have to remove the price level from your book.
+            }
             .map { t -> t.toOrderBookData() }
     }
-
-//    private fun receiveResponse() {
-//        bitfinexApi.receiveResponse()
-//            .subscribeOn(Schedulers.io())
-//            .filter {
-//                it.channel == subscribe.channel
-//            }
-//            .map { tickerResponse ->
-//                tickerResponse.chanId
-//            }
-//            .subscribe ({
-//                chanId = it
-//                Timber.d("subscribeTicker - receiveResponse done: chanId = $it <===")
-//            }, { e ->
-//                Timber.e("subscribeTicker - receiveResponse error: $e <===")
-//            })
-//    }
 }

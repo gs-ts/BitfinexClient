@@ -1,13 +1,13 @@
 package gts.bitfinex.domain.model
 
 data class OrderBookData(
-    val amount: Float,
+    val price: Float,
     val count: Int,
-    val price: Float
+    val amount: Float
 )
 
 fun FloatArray.toOrderBookData() = OrderBookData(
-    amount = this[3],
+    price = this[1],
     count = this[2].toInt(),
-    price = this[1]
+    amount = this[3]
 )
