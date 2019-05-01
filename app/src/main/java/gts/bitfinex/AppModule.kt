@@ -17,8 +17,8 @@ import com.tinder.scarlet.messageadapter.moshi.MoshiMessageAdapter
 import com.tinder.scarlet.websocket.okhttp.newWebSocketFactory
 import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
 
-import gts.bitfinex.data.remote.BitfinexApi
-import gts.bitfinex.data.remote.BitfinexRepository
+import gts.bitfinex.data.network.BitfinexApi
+import gts.bitfinex.data.network.BitfinexRepository
 
 import gts.bitfinex.domain.BitfinexService
 import gts.bitfinex.domain.usecase.ObserveTickerUseCase

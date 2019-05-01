@@ -1,4 +1,4 @@
-package gts.bitfinex.data.remote
+package gts.bitfinex.data.network
 
 import android.annotation.SuppressLint
 
