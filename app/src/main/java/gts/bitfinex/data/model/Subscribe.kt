@@ -2,8 +2,8 @@ package gts.bitfinex.data.model
 
 import com.squareup.moshi.Json
 
-import gts.bitfinex.domain.entities.SubscribeOrderBookEntity
 import gts.bitfinex.domain.entities.SubscribeTickerEntity
+import gts.bitfinex.domain.entities.SubscribeOrderBookEntity
 
 abstract class SubscribeRequest(
     @Json(name = "event")
@@ -12,6 +12,18 @@ abstract class SubscribeRequest(
     open val channel: String,
     @Json(name = "pair")
     open val pair: String
+)
+
+data class TickerRequest(
+    override val event: String,
+    override val channel: String,
+    override val pair: String
+) : SubscribeRequest(event, channel, pair)
+
+fun SubscribeTickerEntity.toSubcribeTickerRequest() = TickerRequest(
+    event = event,
+    channel = channel,
+    pair = pair
 )
 
 class OrderBookRequest(
@@ -27,16 +39,4 @@ fun SubscribeOrderBookEntity.toSubcribeOrderBookrRequest() = OrderBookRequest(
     channel = channel,
     pair = pair,
     frequency = frequency
-)
-
-data class TickerRequest(
-    override val event: String,
-    override val channel: String,
-    override val pair: String
-) : SubscribeRequest(event, channel, pair)
-
-fun SubscribeTickerEntity.toSubcribeTickerRequest() = TickerRequest(
-    event = event,
-    channel = channel,
-    pair = pair
 )

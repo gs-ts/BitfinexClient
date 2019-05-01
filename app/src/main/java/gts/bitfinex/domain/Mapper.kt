@@ -6,11 +6,11 @@ import gts.bitfinex.presentation.model.Ticker
 import gts.bitfinex.presentation.model.OrderBook
 
 fun TickerData.toTickerModel() = Ticker(
+    dailyChange = dailyChange,
     lastPrice = lastPrice,
     volume = volume,
-    low = low,
     high = high,
-    change = dailyChange
+    low = low
 )
 
 fun OrderBookData.toOrderBookModel() = OrderBook(

@@ -40,6 +40,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeTicker()
             .subscribeOn(Schedulers.io())
+            .filter { it[1] != "hb" } // exclude Heartbeating
             .map { ticker -> ticker.toTickerData() }
     }
 
