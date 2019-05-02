@@ -14,7 +14,7 @@ fun TickerData.toTickerModel() = Ticker(
 )
 
 fun OrderBookData.toOrderBookModel() = OrderBook(
-    price = price.toString(),
-    count = count.toString(),
-    amount = amount.toString()
+    price = price,
+    count = count,
+    amount = amount
 )

@@ -7,6 +7,7 @@ import gts.bitfinex.domain.toOrderBookModel
 import gts.bitfinex.domain.entities.SubscribeEntity
 import gts.bitfinex.domain.entities.SubscribeOrderBookEntity
 import gts.bitfinex.presentation.model.OrderBook
+import io.reactivex.schedulers.Schedulers
 
 class ObserveOrderBookUseCase(private val bitfinexService: BitfinexService) {
 
@@ -18,6 +19,7 @@ class ObserveOrderBookUseCase(private val bitfinexService: BitfinexService) {
             frequency = SubscribeEntity.FREQUENCY_ZERO
         )
         return bitfinexService.subscribeAndObserveOrderBook(subscribeOrderBook)
+            .observeOn(Schedulers.computation())
             .map { orderBook -> orderBook.toOrderBookModel() }
     }
 }

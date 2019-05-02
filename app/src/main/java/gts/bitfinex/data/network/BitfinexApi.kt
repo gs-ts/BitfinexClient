@@ -28,7 +28,7 @@ interface BitfinexApi {
     fun sendOrderBookRequest(subscribeOrderBook: OrderBookRequest)
 
     @Receive
-    fun observeOrderBook(): Flowable<FloatArray>
+    fun observeOrderBook(): Flowable<DoubleArray>
 
     companion object {
         const val BASE_URI = "wss://api.bitfinex.com/ws/"

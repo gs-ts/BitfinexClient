@@ -59,8 +59,9 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeOrderBook()
             .subscribeOn(Schedulers.io())
-            .debounce(100, TimeUnit.MILLISECONDS) // slow down a bit
+            .debounce(100, TimeUnit.MILLISECONDS) // TODO: maybe something else
             .filter { it.size == 4 } // make sure it's an order book
+            .observeOn(Schedulers.computation())
             .filter{ orderBook ->
                 orderBook[2].toInt() != 0 // COUNT=0 means that you have to remove the price level from your book.
             }
