@@ -112,7 +112,6 @@
                     android:textColor="@color/cardview_light_background"
                     android:textSize="20sp"
                     android:layout_columnSpan="2"
-                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:textStyle="bold"
                     tools:text="Order Book"/>
