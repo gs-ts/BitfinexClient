@@ -1,9 +1,10 @@
 package gts.bitfinex.domain.usecase
 
 import io.reactivex.Flowable
+import io.reactivex.schedulers.Schedulers
 
-import gts.bitfinex.domain.BitfinexService
 import gts.bitfinex.domain.toTickerModel
+import gts.bitfinex.domain.BitfinexService
 import gts.bitfinex.domain.entities.SubscribeEntity
 import gts.bitfinex.domain.entities.SubscribeTickerEntity
 import gts.bitfinex.presentation.model.Ticker
@@ -17,6 +18,7 @@ class ObserveTickerUseCase(private val bitfinexService: BitfinexService) {
             pair = SubscribeEntity.BTCUSD_PAIR
         )
         return bitfinexService.subscribeAndObserveTicker(subscribeTicker)
+            .observeOn(Schedulers.computation())
             .map { tickerData -> tickerData.toTickerModel() }
     }
 }
