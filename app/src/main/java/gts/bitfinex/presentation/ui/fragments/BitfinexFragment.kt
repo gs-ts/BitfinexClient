@@ -1,22 +1,28 @@
 package gts.bitfinex.presentation.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.LayoutInflater
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
-import gts.bitfinex.databinding.BitfinexFragmentBinding
-import kotlinx.android.synthetic.main.bitfinex_fragment.*
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+
+import kotlinx.android.synthetic.main.bitfinex_fragment.order_book_bid_list
+import kotlinx.android.synthetic.main.bitfinex_fragment.order_book_ask_list
+
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
+import gts.bitfinex.databinding.BitfinexFragmentBinding
+import gts.bitfinex.presentation.ui.getOrderBookAskList
+import gts.bitfinex.presentation.ui.getOrderBookBidList
 
 class BitfinexFragment : Fragment() {
 
     private val viewModel: BitfinexViewModel by sharedViewModel()
-    lateinit var binding: BitfinexFragmentBinding
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var orderBookAdapter: OrderBookAdapter
+    private lateinit var binding: BitfinexFragmentBinding
+    private lateinit var orderBookBidAdapter: OrderBookAdapter
+    private lateinit var orderBookAskAdapter: OrderBookAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,30 +30,32 @@ class BitfinexFragment : Fragment() {
     ): View {
         binding = BitfinexFragmentBinding.inflate(inflater, container, false)
         return binding.root
-//        return inflater.inflate(R.layout.bitfinex_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel
-
-        viewModel.ticker.observe(this, Observer {
-            binding.ticker = it
+        viewModel.ticker.observe(this, Observer { ticker ->
+            binding.ticker = ticker
         })
 
-        viewModel.orderBook.observe(this, Observer {
-            orderBookAdapter.addOrderBooks(it)
+        viewModel.orderBooks.observe(this, Observer { orderBookList ->
+            orderBookBidAdapter.addOrderBooks(getOrderBookBidList(orderBookList))
+            orderBookAskAdapter.addOrderBooks(getOrderBookAskList(orderBookList))
         })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        orderBookAdapter = OrderBookAdapter()
-        recyclerView = order_book_list
-        recyclerView.adapter = orderBookAdapter
+        orderBookBidAdapter = OrderBookAdapter(true)
+        order_book_bid_list.layoutManager = LinearLayoutManager(activity)
+        order_book_bid_list.adapter = orderBookBidAdapter
+
+        orderBookAskAdapter = OrderBookAdapter(false)
+        order_book_ask_list.layoutManager = LinearLayoutManager(activity)
+        order_book_ask_list.adapter = orderBookAskAdapter
     }
 
     companion object {

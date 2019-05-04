@@ -1,38 +1,45 @@
 package gts.bitfinex.presentation.ui.fragments
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
-import gts.bitfinex.R
-import kotlinx.android.synthetic.main.order_book_bid_item.view.*
-import java.util.*
+
 import kotlin.math.absoluteValue
 
-//TODO: https://stackoverflow.com/questions/29141729/recyclerview-no-adapter-attached-skipping-layout
-class OrderBookAdapter : RecyclerView.Adapter<OrderBookHolder>() {
+import kotlinx.android.synthetic.main.order_book_bid_item.view.amount
+import kotlinx.android.synthetic.main.order_book_bid_item.view.price
 
-    //TODO: https://stackoverflow.com/questions/26245139/how-to-create-recyclerview-with-multiple-view-type
+import gts.bitfinex.R
+
+class OrderBookAdapter(private val isBidItem: Boolean) : RecyclerView.Adapter<OrderBookHolder>() {
+
+    private val orders: ArrayList<Triple<Double, Double, Int>> = ArrayList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBookHolder {
-
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.order_book_bid_item,
-            parent,
-            false
-        )
-        return OrderBookHolder(view)
+        return if (isBidItem) {
+            OrderBookHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.order_book_bid_item,
+                    parent,
+                    false
+                )
+            )
+        } else {
+            OrderBookHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.order_book_ask_item,
+                    parent,
+                    false
+                )
+            )
+        }
     }
 
-    val orders: ArrayList<Triple<Double, Double, Int>> = ArrayList()
-
-    override fun getItemCount(): Int {
-        return orders.size
-    }
+    override fun getItemCount() = orders.size
 
     override fun onBindViewHolder(holder: OrderBookHolder, position: Int) {
         holder.bindItems(orders[position])
-//        val book = queue.elementAt(position)
-//        holder.bind(book)
     }
 
     fun addOrderBooks(orderBooks: List<Triple<Double, Double, Int>>) {
@@ -42,7 +49,7 @@ class OrderBookAdapter : RecyclerView.Adapter<OrderBookHolder>() {
     }
 }
 
-class OrderBookHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class OrderBookHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindItems(order: Triple<Double, Double, Int>) = with(view) {
         amount.text = order.second.absoluteValue.toString()
