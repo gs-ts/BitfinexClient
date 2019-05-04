@@ -8,18 +8,11 @@
         <TextView
                 android:id="@+id/amount"
                 android:text="amount"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:text="amount"/>
-
-        <TextView
-                android:id="@+id/count"
-                android:text="count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="count"/>
 
         <TextView
                 android:id="@+id/price"
