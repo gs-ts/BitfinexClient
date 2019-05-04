@@ -44,9 +44,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion"
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 
