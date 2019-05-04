@@ -2,8 +2,6 @@ package gts.bitfinex.data.network
 
 import android.annotation.SuppressLint
 
-import java.util.concurrent.TimeUnit
-
 import com.tinder.scarlet.WebSocket
 
 import io.reactivex.Flowable
@@ -40,8 +38,8 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeTicker()
             .subscribeOn(Schedulers.io())
-            .filter { it.size == 11 } // make sure it's a ticker
-            .map {ticker -> ticker.toTickerData() }
+            .filter { it.size == 11 } // make sure it's a ticker, maybe a better way to handle this
+            .map { ticker -> ticker.toTickerData() }
     }
 
     override fun subscribeAndObserveOrderBook(subscribe: SubscribeOrderBookEntity): Flowable<OrderBookData> {
@@ -59,7 +57,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeOrderBook()
             .subscribeOn(Schedulers.io())
-            .filter { it.size == 4 } // make sure it's an order book
+            .filter { it.size == 4 } // make sure it's an order book, maybe a better way to handle this
             .observeOn(Schedulers.computation())
             .map { orderBook -> orderBook.toOrderBookData() }
     }
