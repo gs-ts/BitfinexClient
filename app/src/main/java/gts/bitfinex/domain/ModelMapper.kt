@@ -18,3 +18,4 @@ fun OrderBookData.toOrderBookModel() = OrderBook(
     count = count,
     amount = amount
 )
+

@@ -59,7 +59,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeOrderBook()
             .subscribeOn(Schedulers.io())
-            .debounce(100, TimeUnit.MILLISECONDS) // TODO: maybe something else
+//            .debounce(10, TimeUnit.MILLISECONDS) // TODO: maybe something else
             .filter { it.size == 4 } // make sure it's an order book
             .observeOn(Schedulers.computation())
             .filter{ orderBook ->
