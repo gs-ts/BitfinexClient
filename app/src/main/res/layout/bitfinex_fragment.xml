@@ -39,7 +39,7 @@
                     tools:text="BTC/USD"/>
 
             <TextView
-                    android:text="@{`last price: ` + ticker.lastPrice}"
+                    android:text="@{`volume: ` + (ticker.lastPrice ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -49,7 +49,7 @@
                     android:layout_marginStart="16dp"
                     tools:text="last price"/>
             <TextView
-                    android:text="@{`volume: ` + ticker.volume}"
+                    android:text="@{`volume: ` + (ticker.volume ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -59,7 +59,7 @@
                     android:layout_marginStart="16dp"
                     tools:text="volume"/>
             <TextView
-                    android:text="@{`low: ` + ticker.low}"
+                    android:text="@{`low: ` + (ticker.low ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -69,7 +69,7 @@
                     android:layout_marginStart="16dp"
                     tools:text="low"/>
             <TextView
-                    android:text="@{`high: ` + ticker.high}"
+                    android:text="@{`high: ` + (ticker.high ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -79,7 +79,7 @@
                     android:layout_marginStart="16dp"
                     tools:text="high"/>
             <TextView
-                    android:text="@{`change: ` + ticker.dailyChange}"
+                    android:text="@{`change: ` + (ticker.dailyChange ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
