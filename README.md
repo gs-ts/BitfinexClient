@@ -24,6 +24,6 @@ a table with the order book
 
 - [OkHttp](https://square.github.io/okhttp/), an HTTP client for Android and Java applications 
 
-- [moshi](https://github.com/square/moshi) JSON library for Kotlin and Java 
+- [moshi](https://github.com/square/moshi), JSON library for Kotlin and Java 
 
 - [Timber](https://github.com/JakeWharton/timber), a logger which provides utility on top of Android’s Log class
