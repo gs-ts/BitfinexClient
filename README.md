@@ -1,8 +1,8 @@
 # BitfinexClient
 
 An android app that showing the details of the BTC/USD currency pair, at real-time:
-a summary (current price, price change, volume, low, high) - ticker
-a table with the order book
+- a summary (current price, price change, volume, low, high) - ticker
+- a table with the order book
 
 ---
 
