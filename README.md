@@ -7,6 +7,10 @@ a table with the order book
 ---
 
 ### MVVM pattern with Clean architecture (as much as possible) developed with Kotlin.
+Clean architecture consists of three layers:
+- **Data**, which includes databases, clients, repositories, network
+- **Domain**, which includes entities, usecases, and interactors
+- **Presentation**, which includes UI related components, such as ViewModels, Presenters, Layouts, Fragments, Activities
 
 ##### Android Jetpack Components used:
 - Fragment
