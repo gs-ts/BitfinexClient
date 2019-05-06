@@ -8,14 +8,14 @@ a table with the order book
 
 ### MVVM pattern with Clean architecture (as much as possible) developed with Kotlin.
 
-Android Jetpack Components used:
+##### Android Jetpack Components used:
 - Fragment
 - ViewModel 
 - LiveData 
 - Data Binding 
 - ActivityScenario, for instrumentation test (part of AndroidX Test) 
 
-Libraries:
+##### Libraries:
 - [Koin](https://insert-koin.io/), an easy-to-use DI framework. [Nice comparison with Dagger](https://medium.com/@farshidabazari/android-koin-with-mvvm-and-retrofit-e040e4e15f9d)
 
 - [RxKotlin](https://github.com/ReactiveX/RxKotlin) / [RxAndroid](https://github.com/ReactiveX/RxAndroid), RxJava bindings for Kotlin / Android 
