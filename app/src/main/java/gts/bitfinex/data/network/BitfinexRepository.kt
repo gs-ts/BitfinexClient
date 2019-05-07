@@ -23,7 +23,7 @@ import timber.log.Timber
 @SuppressLint("CheckResult")
 class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService {
 
-    private val TICKER_SNAPSHOT_SIZE = 11
+    private val TICKER_SNAPSHOT_SIZE = 11 // https://docs.bitfinex.com/reference#ws-public-ticker
     private val ORDERBOOK_SNAPSHOT_SIZE = 4
 
     override fun subscribeAndObserveTicker(subscribe: SubscribeTickerEntity): Flowable<TickerData> {
@@ -41,7 +41,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
 
         return bitfinexApi.observeTicker()
             .subscribeOn(Schedulers.io())
-            .filter { it.size == TICKER_SNAPSHOT_SIZE } // make sure it's a ticker, maybe find a better way to handle this
+            .filter { it.size == TICKER_SNAPSHOT_SIZE } // make sure it's a ticker
             .map { ticker -> ticker.toTickerData() }
     }
 
