@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#191919"
             tools:context=".ui.fragments.BitfinexFragment">
 
         <GridLayout
@@ -34,8 +35,8 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:background="#FF8C00"
-                    android:textColor="@color/cardview_light_background"
+                    android:background="#FFA500"
+                    android:textColor="#FFFFFF"
                     tools:text="BTC/USD"/>
 
             <TextView
@@ -47,6 +48,7 @@
                     android:layout_row="1"
                     android:layout_column="0"
                     android:layout_marginStart="16dp"
+                    android:textColor="#FFFFFF"
                     tools:text="last price"/>
             <TextView
                     android:text="@{`volume: ` + (ticker.volume ?? `0`)}"
@@ -57,6 +59,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_marginStart="16dp"
+                    android:textColor="#FFFFFF"
                     tools:text="volume"/>
             <TextView
                     android:text="@{`low: ` + (ticker.low ?? `0`)}"
@@ -67,6 +70,7 @@
                     android:layout_row="2"
                     android:layout_column="0"
                     android:layout_marginStart="16dp"
+                    android:textColor="#FFFFFF"
                     tools:text="low"/>
             <TextView
                     android:text="@{`high: ` + (ticker.high ?? `0`)}"
@@ -77,6 +81,7 @@
                     android:layout_row="2"
                     android:layout_column="1"
                     android:layout_marginStart="16dp"
+                    android:textColor="#FFFFFF"
                     tools:text="high"/>
             <TextView
                     android:text="@{`change: ` + (ticker.dailyChange ?? `0`)}"
@@ -87,6 +92,7 @@
                     android:layout_row="3"
                     android:layout_column="0"
                     android:layout_marginStart="16dp"
+                    android:textColor="#FFFFFF"
                     tools:text="change"/>
         </GridLayout>
 
@@ -108,8 +114,8 @@
                     android:text="Order Book"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FF8C00"
-                    android:textColor="@color/cardview_light_background"
+                    android:background="#FFA500"
+                    android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:layout_columnSpan="2"
                     android:gravity="center"
@@ -127,6 +133,7 @@
                     android:layout_column="0"
                     android:textStyle="bold"
                     android:background="#90EE90"
+                    android:textColor="#FFFFFF"
                     tools:text="bid"/>
 
             <TextView
@@ -140,6 +147,7 @@
                     android:layout_column="1"
                     android:textStyle="bold"
                     android:background="#FFA07A"
+                    android:textColor="#FFFFFF"
                     tools:text="ask"/>
         </GridLayout>
 
@@ -175,9 +183,6 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </LinearLayout>
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
