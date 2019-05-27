@@ -2,7 +2,8 @@ package gts.bitfinex
 
 import android.app.Application
 
-import org.koin.dsl.module.module
+import org.koin.dsl.module
+import org.koin.androidx.viewmodel.dsl.viewModel
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,22 +20,20 @@ import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
 
 import gts.bitfinex.data.network.BitfinexApi
 import gts.bitfinex.data.network.BitfinexRepository
-
 import gts.bitfinex.domain.BitfinexService
 import gts.bitfinex.domain.usecase.ObserveTickerUseCase
 import gts.bitfinex.domain.usecase.ObserveOrderBookUseCase
-
 import gts.bitfinex.presentation.ui.fragments.BitfinexViewModel
 
 val appModule = module {
     single { createAndroidLifecycle(get()) }
     single { createOkHttpClient() }
     single { createScarlet(okHttpClient = get(), lifecycle = get()) }
-    single { BitfinexRepository(bitfinexApi = get()) as BitfinexService }
+    single<BitfinexService> { BitfinexRepository(bitfinexApi = get()) }
 
     factory { ObserveTickerUseCase(bitfinexService = get()) }
     factory { ObserveOrderBookUseCase(bitfinexService = get()) }
-    factory { BitfinexViewModel(observeTickerUseCase = get(), observeOrderBookUseCase = get()) }
+    viewModel { BitfinexViewModel(observeTickerUseCase = get(), observeOrderBookUseCase = get()) }
 }
 
 fun createOkHttpClient(): OkHttpClient {

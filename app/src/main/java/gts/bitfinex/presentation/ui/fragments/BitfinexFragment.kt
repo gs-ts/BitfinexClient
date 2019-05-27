@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.bitfinex_fragment.order_book_bid_list
 import kotlinx.android.synthetic.main.bitfinex_fragment.order_book_ask_list
 
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 import gts.bitfinex.databinding.BitfinexFragmentBinding
 import gts.bitfinex.presentation.ui.getOrderBookAskList
@@ -19,7 +19,7 @@ import gts.bitfinex.presentation.ui.getOrderBookBidList
 
 class BitfinexFragment : Fragment() {
 
-    private val viewModel: BitfinexViewModel by sharedViewModel()
+    private val viewModel: BitfinexViewModel by viewModel()
     private lateinit var binding: BitfinexFragmentBinding
     private lateinit var orderBookBidAdapter: OrderBookAdapter
     private lateinit var orderBookAskAdapter: OrderBookAdapter

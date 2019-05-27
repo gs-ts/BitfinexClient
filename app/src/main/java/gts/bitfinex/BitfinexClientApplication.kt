@@ -1,8 +1,10 @@
 package gts.bitfinex
 
 import android.app.Application
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 
-import org.koin.android.ext.android.startKoin
+import org.koin.core.context.startKoin
 
 import timber.log.Timber
 import timber.log.Timber.DebugTree
@@ -15,6 +17,10 @@ class BitfinexClientApplication: Application() {
             Timber.plant(DebugTree())
         }
 
-        startKoin(this@BitfinexClientApplication, listOf(appModule))
+        startKoin {
+            androidLogger()
+            androidContext(this@BitfinexClientApplication)
+            modules(listOf(appModule))
+        }
     }
 }
