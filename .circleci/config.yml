@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/BitfinexClient
+    docker:
+      - image: circleci/android:api-28
+    environment:
+      GRADLE_OPTS: -Xmx4g -Dorg.gradle.daemon=false
+      JVM_OPTS: -Xmx4g
+    steps:
+      - checkout
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - run:
+          name: Run Lint
+          command: ./gradlew lint
+      - run:
+          name: Run Unit Tests
+          command: ./gradlew testDebugUnitTest
