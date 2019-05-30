@@ -12,7 +12,9 @@ jobs:
       - checkout
       - run:
           name: Download Dependencies
-          command: sudo chmod +x ./gradlew androidDependencies
+          command: |
+            sudo chmod +x gradlew
+            ./gradlew dependencies
       - run:
           name: Run Lint
           command: ./gradlew lint
