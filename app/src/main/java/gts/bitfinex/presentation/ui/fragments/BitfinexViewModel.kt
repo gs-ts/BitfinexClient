@@ -36,9 +36,9 @@ class BitfinexViewModel(
 
     init {
         compositeDisposable.add(observeTickerUseCase.invoke()
-            .subscribeOn(Schedulers.computation())
+            .observeOn(Schedulers.computation())
             .map { tickerData -> tickerData.toTickerModel() }
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe({ ticker ->
                 _ticker.postValue(ticker)
             }, { e ->
@@ -47,12 +47,12 @@ class BitfinexViewModel(
         )
 
         compositeDisposable.add(observeOrderBookUseCase.invoke()
-            .subscribeOn(Schedulers.computation())
+            .observeOn(Schedulers.computation())
             .map { orderBookData -> orderBookData.toOrderBookModel() }
             .map { orderBook ->
                 orderBook.buildOrderBooks()
             }
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe({ orderBookList ->
                 _orderBooks.postValue(ArrayList(orderBookList))
             }, { e ->
