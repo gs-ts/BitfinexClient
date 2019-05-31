@@ -15,9 +15,9 @@ jobs:
           command: |
             sudo chmod +x gradlew
             ./gradlew dependencies
-      - run:
-          name: Run Lint
-          command: ./gradlew lint
-      - run:
-          name: Run Unit Tests
-          command: ./gradlew testDebugUnitTest
+#      - run:
+#          name: Run Lint
+#          command: ./gradlew lintDebug
+#      - run:
+#          name: Run Unit Tests
+#          command: ./gradlew testDebugUnitTest
