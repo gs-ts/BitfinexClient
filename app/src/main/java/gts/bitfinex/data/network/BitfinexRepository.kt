@@ -27,14 +27,12 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
     private val ORDERBOOK_SNAPSHOT_SIZE = 4
 
     override fun subscribeAndObserveTicker(subscribe: SubscribeTickerEntity): Flowable<TickerData> {
-        Timber.d("===> subscribeAndObserveTicker")
         bitfinexApi.openWebSocketEvent()
             .filter {
                 it is WebSocket.Event.OnConnectionOpened<*>
             }
             .subscribe({
                 bitfinexApi.sendTickerRequest(subscribe.toSubcribeTickerRequest())
-                Timber.d("subscribeAndObserveTicker <===")
             }, { e ->
                 Timber.e(e)
             })
@@ -46,14 +44,12 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
     }
 
     override fun subscribeAndObserveOrderBook(subscribe: SubscribeOrderBookEntity): Flowable<OrderBookData> {
-        Timber.d("===> subscribeAndObserveOrderBook")
         bitfinexApi.openWebSocketEvent()
             .filter {
                 it is WebSocket.Event.OnConnectionOpened<*>
             }
             .subscribe({
                 bitfinexApi.sendOrderBookRequest(subscribe.toSubcribeOrderBookrRequest())
-                Timber.d("subscribeAndObserveOrderBook <===")
             }, { e ->
                 Timber.e(e)
             })
