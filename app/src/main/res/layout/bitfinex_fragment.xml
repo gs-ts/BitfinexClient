@@ -27,7 +27,7 @@
                 app:layout_constraintRight_toRightOf="parent">
 
             <TextView
-                    android:text="BTC/USD"
+                    android:text="@string/btc_usd_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_columnSpan="2"
@@ -111,7 +111,7 @@
                 app:layout_constraintRight_toRightOf="parent">
 
             <TextView
-                    android:text="Order Book"
+                    android:text="@string/order_book_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFA500"
@@ -123,7 +123,7 @@
                     tools:text="Order Book"/>
 
             <TextView
-                    android:text="bid"
+                    android:text="@string/bid_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -137,7 +137,7 @@
                     tools:text="bid"/>
 
             <TextView
-                    android:text="ask"
+                    android:text="@string/ask_label"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

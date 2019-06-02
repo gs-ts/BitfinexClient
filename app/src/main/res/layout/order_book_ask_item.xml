@@ -7,7 +7,7 @@
 
     <TextView
             android:id="@+id/amount"
-            android:text="amount"
+            android:text="@string/amount_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -17,7 +17,7 @@
 
     <TextView
             android:id="@+id/price"
-            android:text="price"
+            android:text="@string/price_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
