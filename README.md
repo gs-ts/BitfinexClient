@@ -14,7 +14,7 @@ Clean architecture consists of three layers:
 
 Each layer has its own entities/models which are specific to that package. Mapper is used for conversion of one layer to another.
 
-Sources: [1](https://medium.com/androiddevelopers/google-i-o-2018-app-architecture-and-testing-f546e37fc7eb), [2](https://rubygarage.org/blog/clean-android-architecture), [3](https://proandroiddev.com/kotlin-clean-architecture-1ad42fcd97fa)
+Sources: [1](https://medium.com/androiddevelopers/google-i-o-2018-app-architecture-and-testing-f546e37fc7eb), [2](https://rubygarage.org/blog/clean-android-architecture), [3](https://proandroiddev.com/clean-architecture-data-flow-dependency-rule-615ffdd79e29)
 
 ##### Android Jetpack Components used:
 - Fragment
