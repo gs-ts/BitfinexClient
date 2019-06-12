@@ -9,8 +9,8 @@ An android app that showing the details of the BTC/USD currency pair, at real-ti
 ### MVVM pattern with Clean architecture (as much as possible) developed with Kotlin.
 Clean architecture consists of three layers:
 - **Data**, which includes databases, clients, repositories, network
-- **Domain**, which includes entities, usecases, and interactors
-- **Presentation**, which includes UI related components, such as ViewModels, Presenters, Layouts, Fragments, Activities
+- **Domain**, which includes entities, and usecases
+- **Presentation**, which includes UI related components, such as ViewModels, Fragments, Activities
 
 Each layer has its own entities/models which are specific to that package. Mapper is used for conversion of one layer to another.
 
