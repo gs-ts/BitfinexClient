@@ -36,13 +36,13 @@ val appModule = module {
     viewModel { BitfinexViewModel(observeTickerUseCase = get(), observeOrderBookUseCase = get()) }
 }
 
-fun createOkHttpClient(): OkHttpClient {
+private fun createOkHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 }
 
-fun createAndroidLifecycle(application: Application): Lifecycle {
+private fun createAndroidLifecycle(application: Application): Lifecycle {
     return AndroidLifecycle.ofApplicationForeground(application)
 }
 
@@ -50,7 +50,7 @@ private val jsonMoshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-fun createScarlet(okHttpClient: OkHttpClient, lifecycle: Lifecycle): BitfinexApi {
+private fun createScarlet(okHttpClient: OkHttpClient, lifecycle: Lifecycle): BitfinexApi {
     return Scarlet.Builder()
         .webSocketFactory(okHttpClient.newWebSocketFactory(BitfinexApi.BASE_URI))
         .lifecycle(lifecycle)
