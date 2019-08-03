@@ -8,7 +8,7 @@ import gts.bitfinex.presentation.model.OrderBook
 private const val LIST_SIZE = 20
 private val orderBooks: TreeMap<Double, Pair<Double, Int>> = TreeMap()
 
-fun OrderBook.buildOrderBooks(): ArrayList<Triple<Double, Double, Int>> {
+fun OrderBook.buildOrderBooks(): List<Triple<Double, Double, Int>> {
     if (count != 0)
         orderBooks[price] = Pair(amount, count)
     else
@@ -22,10 +22,10 @@ fun OrderBook.buildOrderBooks(): ArrayList<Triple<Double, Double, Int>> {
     return orderBookList
 }
 
-fun getOrderBookBidList(list: ArrayList<Triple<Double, Double, Int>>): List<Triple<Double, Double, Int>> {
+fun getOrderBookBidList(list: List<Triple<Double, Double, Int>>): List<Triple<Double, Double, Int>> {
     return list.filter { t -> t.second > 0 }.reversed().take(LIST_SIZE)
 }
 
-fun getOrderBookAskList(list: ArrayList<Triple<Double, Double, Int>>): List<Triple<Double, Double, Int>> {
+fun getOrderBookAskList(list: List<Triple<Double, Double, Int>>): List<Triple<Double, Double, Int>> {
     return list.filter { t -> t.second < 0 }.take(LIST_SIZE)
 }

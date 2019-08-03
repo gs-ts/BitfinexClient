@@ -1,4 +1,4 @@
-package gts.bitfinex.presentation.ui.fragments
+package gts.bitfinex.presentation.ui
 
 import android.os.Bundle
 import android.view.View
@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.bitfinex_fragment.order_book_ask_list
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 import gts.bitfinex.databinding.BitfinexFragmentBinding
-import gts.bitfinex.presentation.ui.getOrderBookAskList
-import gts.bitfinex.presentation.ui.getOrderBookBidList
 
 class BitfinexFragment : Fragment() {
 

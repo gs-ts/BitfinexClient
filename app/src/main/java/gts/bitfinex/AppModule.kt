@@ -23,7 +23,7 @@ import gts.bitfinex.data.network.BitfinexRepository
 import gts.bitfinex.domain.BitfinexService
 import gts.bitfinex.domain.usecase.ObserveTickerUseCase
 import gts.bitfinex.domain.usecase.ObserveOrderBookUseCase
-import gts.bitfinex.presentation.ui.fragments.BitfinexViewModel
+import gts.bitfinex.presentation.ui.BitfinexViewModel
 
 val appModule = module {
     single { createAndroidLifecycle(get()) }
@@ -33,7 +33,12 @@ val appModule = module {
 
     factory { ObserveTickerUseCase(bitfinexService = get()) }
     factory { ObserveOrderBookUseCase(bitfinexService = get()) }
-    viewModel { BitfinexViewModel(observeTickerUseCase = get(), observeOrderBookUseCase = get()) }
+    viewModel {
+        BitfinexViewModel(
+            observeTickerUseCase = get(),
+            observeOrderBookUseCase = get()
+        )
+    }
 }
 
 private fun createOkHttpClient(): OkHttpClient {

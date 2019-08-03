@@ -1,4 +1,4 @@
-package gts.bitfinex.presentation.ui.fragments
+package gts.bitfinex.presentation.ui
 
 import android.view.View
 import android.view.ViewGroup

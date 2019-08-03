@@ -3,7 +3,7 @@ package gts.bitfinex.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import gts.bitfinex.R
-import gts.bitfinex.presentation.ui.fragments.BitfinexFragment
+import gts.bitfinex.presentation.ui.BitfinexFragment
 
 class BitfinexActivity : AppCompatActivity() {
 

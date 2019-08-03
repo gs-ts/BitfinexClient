@@ -11,8 +11,8 @@ import com.tinder.scarlet.WebSocket
 
 import gts.bitfinex.data.network.BitfinexApi
 import gts.bitfinex.data.network.BitfinexRepository
-import gts.bitfinex.domain.entities.SubscribeOrderBookEntity
-import gts.bitfinex.domain.entities.SubscribeTickerEntity
+import gts.bitfinex.domain.entities.SubscribeOrderBook
+import gts.bitfinex.domain.entities.SubscribeTicker
 
 class BitfinexRepositoryTest {
 
@@ -27,7 +27,7 @@ class BitfinexRepositoryTest {
 
     @Test
     fun `Given subscribe to ticker, When OnConnectionOpened WebSocket event, Then return expected data`() {
-        val subscribeTicker = SubscribeTickerEntity(
+        val subscribeTicker = SubscribeTicker(
             event = "event",
             pair = "pair",
             channel = "channel"
@@ -81,7 +81,7 @@ class BitfinexRepositoryTest {
 
     @Test
     fun `Given subscribe to order book, When OnConnectionOpened WebSocket event, Then return expected data`() {
-        val subscribeOrderBook = SubscribeOrderBookEntity(
+        val subscribeOrderBook = SubscribeOrderBook(
             event = "event",
             pair = "pair",
             channel = "channel",

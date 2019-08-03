@@ -15,8 +15,8 @@ import gts.bitfinex.domain.model.TickerData
 import gts.bitfinex.domain.model.toTickerData
 import gts.bitfinex.domain.model.OrderBookData
 import gts.bitfinex.domain.model.toOrderBookData
-import gts.bitfinex.domain.entities.SubscribeTickerEntity
-import gts.bitfinex.domain.entities.SubscribeOrderBookEntity
+import gts.bitfinex.domain.entities.SubscribeTicker
+import gts.bitfinex.domain.entities.SubscribeOrderBook
 
 import timber.log.Timber
 
@@ -26,7 +26,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
     private val TICKER_SNAPSHOT_SIZE = 11 // https://docs.bitfinex.com/reference#ws-public-ticker
     private val ORDERBOOK_SNAPSHOT_SIZE = 4
 
-    override fun subscribeAndObserveTicker(subscribe: SubscribeTickerEntity): Flowable<TickerData> {
+    override fun subscribeAndObserveTicker(subscribe: SubscribeTicker): Flowable<TickerData> {
         bitfinexApi.openWebSocketEvent()
             .filter {
                 it is WebSocket.Event.OnConnectionOpened<*>
@@ -43,7 +43,7 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
             .map { ticker -> ticker.toTickerData() }
     }
 
-    override fun subscribeAndObserveOrderBook(subscribe: SubscribeOrderBookEntity): Flowable<OrderBookData> {
+    override fun subscribeAndObserveOrderBook(subscribe: SubscribeOrderBook): Flowable<OrderBookData> {
         bitfinexApi.openWebSocketEvent()
             .filter {
                 it is WebSocket.Event.OnConnectionOpened<*>

@@ -1,4 +1,4 @@
-package gts.bitfinex.presentation.ui.fragments
+package gts.bitfinex.presentation.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -6,16 +6,13 @@ import androidx.lifecycle.MutableLiveData
 
 import java.util.ArrayList
 
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 import gts.bitfinex.domain.usecase.ObserveTickerUseCase
 import gts.bitfinex.domain.usecase.ObserveOrderBookUseCase
 import gts.bitfinex.presentation.model.Ticker
 import gts.bitfinex.presentation.model.toTickerModel
 import gts.bitfinex.presentation.model.toOrderBookModel
-import gts.bitfinex.presentation.ui.buildOrderBooks
 
 import timber.log.Timber
 
@@ -30,15 +27,13 @@ class BitfinexViewModel(
     val ticker: LiveData<Ticker>
         get() = _ticker
 
-    private val _orderBooks = MutableLiveData<ArrayList<Triple<Double, Double, Int>>>()
-    val orderBooks: LiveData<ArrayList<Triple<Double, Double, Int>>>
+    private val _orderBooks = MutableLiveData<List<Triple<Double, Double, Int>>>()
+    val orderBooks: LiveData<List<Triple<Double, Double, Int>>>
         get() = _orderBooks
 
     init {
         compositeDisposable.add(observeTickerUseCase.invoke()
-            .observeOn(Schedulers.computation())
             .map { tickerData -> tickerData.toTickerModel() }
-            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe({ ticker ->
                 _ticker.postValue(ticker)
             }, { e ->
@@ -47,12 +42,10 @@ class BitfinexViewModel(
         )
 
         compositeDisposable.add(observeOrderBookUseCase.invoke()
-            .observeOn(Schedulers.computation())
             .map { orderBookData -> orderBookData.toOrderBookModel() }
             .map { orderBook ->
                 orderBook.buildOrderBooks()
             }
-            .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe({ orderBookList ->
                 _orderBooks.postValue(ArrayList(orderBookList))
             }, { e ->
