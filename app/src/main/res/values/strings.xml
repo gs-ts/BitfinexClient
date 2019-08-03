@@ -2,8 +2,8 @@
     <string name="app_name">Bitfinex Client</string>
     <string name="btc_usd_title">"BTC/USD</string>
     <string name="order_book_title">"Order Book</string>
-    <string name="bid_label">"Order Book</string>
-    <string name="ask_label">"Order Book</string>
+    <string name="bid_label">"Bid</string>
+    <string name="ask_label">"Ask</string>
     <string name="amount_text">"amount</string>
     <string name="price_text">"price</string>
 </resources>
