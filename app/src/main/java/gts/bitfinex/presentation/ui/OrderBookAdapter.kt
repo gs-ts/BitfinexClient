@@ -11,10 +11,11 @@ import kotlinx.android.synthetic.main.order_book_bid_item.view.amount
 import kotlinx.android.synthetic.main.order_book_bid_item.view.price
 
 import gts.bitfinex.R
+import gts.bitfinex.presentation.model.OrderBook
 
 class OrderBookAdapter(private val isBidItem: Boolean) : RecyclerView.Adapter<OrderBookHolder>() {
 
-    private val orders: ArrayList<Triple<Double, Double, Int>> = ArrayList()
+    private val orders: ArrayList<OrderBook> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBookHolder {
         return if (isBidItem) {
@@ -42,7 +43,7 @@ class OrderBookAdapter(private val isBidItem: Boolean) : RecyclerView.Adapter<Or
         holder.bindItems(orders[position])
     }
 
-    fun addOrderBooks(orderBooks: List<Triple<Double, Double, Int>>) {
+    fun addOrderBooks(orderBooks: List<OrderBook>) {
         orders.clear()
         orders.addAll(orderBooks)
         notifyDataSetChanged()
@@ -51,8 +52,8 @@ class OrderBookAdapter(private val isBidItem: Boolean) : RecyclerView.Adapter<Or
 
 class OrderBookHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bindItems(order: Triple<Double, Double, Int>) = with(view) {
-        amount.text = order.second.absoluteValue.toString()
-        price.text = order.first.toString()
+    fun bindItems(order: OrderBook) = with(view) {
+        amount.text = order.amount.absoluteValue.toString()
+        price.text = order.price.toString()
     }
 }

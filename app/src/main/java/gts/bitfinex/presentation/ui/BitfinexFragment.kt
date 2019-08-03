@@ -30,6 +30,18 @@ class BitfinexFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        orderBookBidAdapter = OrderBookAdapter(true)
+        order_book_bid_list.layoutManager = LinearLayoutManager(activity)
+        order_book_bid_list.adapter = orderBookBidAdapter
+
+        orderBookAskAdapter = OrderBookAdapter(false)
+        order_book_ask_list.layoutManager = LinearLayoutManager(activity)
+        order_book_ask_list.adapter = orderBookAskAdapter
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -42,18 +54,6 @@ class BitfinexFragment : Fragment() {
             orderBookBidAdapter.addOrderBooks(getOrderBookBidList(orderBookList))
             orderBookAskAdapter.addOrderBooks(getOrderBookAskList(orderBookList))
         })
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        orderBookBidAdapter = OrderBookAdapter(true)
-        order_book_bid_list.layoutManager = LinearLayoutManager(activity)
-        order_book_bid_list.adapter = orderBookBidAdapter
-
-        orderBookAskAdapter = OrderBookAdapter(false)
-        order_book_ask_list.layoutManager = LinearLayoutManager(activity)
-        order_book_ask_list.adapter = orderBookAskAdapter
     }
 
     companion object {

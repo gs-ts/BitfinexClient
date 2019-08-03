@@ -8,11 +8,12 @@ import java.util.ArrayList
 
 import io.reactivex.disposables.CompositeDisposable
 
-import gts.bitfinex.domain.usecase.ObserveTickerUseCase
-import gts.bitfinex.domain.usecase.ObserveOrderBookUseCase
 import gts.bitfinex.presentation.model.Ticker
+import gts.bitfinex.presentation.model.OrderBook
 import gts.bitfinex.presentation.model.toTickerModel
 import gts.bitfinex.presentation.model.toOrderBookModel
+import gts.bitfinex.domain.usecase.ObserveTickerUseCase
+import gts.bitfinex.domain.usecase.ObserveOrderBookUseCase
 
 import timber.log.Timber
 
@@ -27,8 +28,8 @@ class BitfinexViewModel(
     val ticker: LiveData<Ticker>
         get() = _ticker
 
-    private val _orderBooks = MutableLiveData<List<Triple<Double, Double, Int>>>()
-    val orderBooks: LiveData<List<Triple<Double, Double, Int>>>
+    private val _orderBooks = MutableLiveData<List<OrderBook>>()
+    val orderBooks: LiveData<List<OrderBook>>
         get() = _orderBooks
 
     init {
