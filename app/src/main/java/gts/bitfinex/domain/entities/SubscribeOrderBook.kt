@@ -5,4 +5,4 @@ class SubscribeOrderBook(
     override val channel: String,
     override val pair: String,
     val frequency: String
-) : SubscribeEntity(event, channel, pair)
+) : BaseSubscribeEntity(event, channel, pair)
