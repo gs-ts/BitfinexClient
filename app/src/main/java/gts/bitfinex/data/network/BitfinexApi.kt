@@ -7,8 +7,8 @@ import com.tinder.scarlet.ws.Receive
 import com.tinder.scarlet.ws.Send
 
 import gts.bitfinex.data.model.JsonResponse
-import gts.bitfinex.data.model.TickerRequestBase
-import gts.bitfinex.data.model.OrderBookRequestBase
+import gts.bitfinex.data.model.SubscribeTickerRequest
+import gts.bitfinex.data.model.SubscribeOrderBookRequest
 
 interface BitfinexApi {
 
@@ -19,13 +19,13 @@ interface BitfinexApi {
     fun receiveResponse(): Flowable<JsonResponse>
 
     @Send
-    fun sendTickerRequest(subscribeTicker: TickerRequestBase)
+    fun sendTickerRequest(subscribeTickerRequest: SubscribeTickerRequest)
 
     @Receive
     fun observeTicker(): Flowable<Array<String>>
 
     @Send
-    fun sendOrderBookRequest(subscribeOrderBook: OrderBookRequestBase)
+    fun sendOrderBookRequest(subscribeOrderBookRequest: SubscribeOrderBookRequest)
 
     @Receive
     fun observeOrderBook(): Flowable<DoubleArray>

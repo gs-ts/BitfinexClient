@@ -14,19 +14,19 @@ abstract class BaseSubscribeRequest(
     open val pair: String
 )
 
-data class TickerRequestBase(
+data class SubscribeTickerRequest(
     override val event: String,
     override val channel: String,
     override val pair: String
 ) : BaseSubscribeRequest(event, channel, pair)
 
-fun SubscribeTicker.toSubcribeTickerRequest() = TickerRequestBase(
+fun SubscribeTicker.toSubcribeTickerRequest() = SubscribeTickerRequest(
     event = event,
     channel = channel,
     pair = pair
 )
 
-class OrderBookRequestBase(
+class SubscribeOrderBookRequest(
     override val event: String,
     override val channel: String,
     override val pair: String,
@@ -34,7 +34,7 @@ class OrderBookRequestBase(
     val frequency: String
 ) : BaseSubscribeRequest(event, channel, pair)
 
-fun SubscribeOrderBook.toSubcribeOrderBookrRequest() = OrderBookRequestBase(
+fun SubscribeOrderBook.toSubcribeOrderBookrRequest() = SubscribeOrderBookRequest(
     event = event,
     channel = channel,
     pair = pair,

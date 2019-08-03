@@ -26,13 +26,13 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
     private val TICKER_SNAPSHOT_SIZE = 11 // https://docs.bitfinex.com/reference#ws-public-ticker
     private val ORDERBOOK_SNAPSHOT_SIZE = 4
 
-    override fun subscribeAndObserveTicker(subscribe: SubscribeTicker): Flowable<TickerData> {
+    override fun subscribeAndObserveTicker(subscribeTicker: SubscribeTicker): Flowable<TickerData> {
         bitfinexApi.openWebSocketEvent()
             .filter {
                 it is WebSocket.Event.OnConnectionOpened<*>
             }
             .subscribe({
-                bitfinexApi.sendTickerRequest(subscribe.toSubcribeTickerRequest())
+                bitfinexApi.sendTickerRequest(subscribeTicker.toSubcribeTickerRequest())
             }, { e ->
                 Timber.e(e)
             })
@@ -43,13 +43,13 @@ class BitfinexRepository(private val bitfinexApi: BitfinexApi) : BitfinexService
             .map { ticker -> ticker.toTickerData() }
     }
 
-    override fun subscribeAndObserveOrderBook(subscribe: SubscribeOrderBook): Flowable<OrderBookData> {
+    override fun subscribeAndObserveOrderBook(subscribeOrderBook: SubscribeOrderBook): Flowable<OrderBookData> {
         bitfinexApi.openWebSocketEvent()
             .filter {
                 it is WebSocket.Event.OnConnectionOpened<*>
             }
             .subscribe({
-                bitfinexApi.sendOrderBookRequest(subscribe.toSubcribeOrderBookrRequest())
+                bitfinexApi.sendOrderBookRequest(subscribeOrderBook.toSubcribeOrderBookrRequest())
             }, { e ->
                 Timber.e(e)
             })
