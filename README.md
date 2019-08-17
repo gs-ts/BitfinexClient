@@ -22,6 +22,7 @@ Sources: [1](https://medium.com/androiddevelopers/google-i-o-2018-app-architectu
 - LiveData 
 - Data Binding 
 - ActivityScenario, for instrumentation test (part of AndroidX Test) 
+- Espresso
 
 ##### Libraries:
 - [Koin](https://insert-koin.io/), an easy-to-use DI framework. [Nice comparison with Dagger](https://medium.com/@farshidabazari/android-koin-with-mvvm-and-retrofit-e040e4e15f9d)
