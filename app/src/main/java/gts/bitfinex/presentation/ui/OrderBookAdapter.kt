@@ -13,21 +13,32 @@ import kotlinx.android.synthetic.main.order_book_bid_item.view.price
 import gts.bitfinex.R
 import gts.bitfinex.presentation.model.OrderBook
 
-class OrderBookAdapter(private val isBidItem: Boolean) : RecyclerView.Adapter<OrderBookHolder>() {
+private const val VIEW_TYPE_BID = 0
+private const val VIEW_TYPE_ASK = 1
+
+class OrderBookAdapter : RecyclerView.Adapter<OrderBookHolder>() {
 
     private val orders: ArrayList<OrderBook> = ArrayList()
 
+    override fun getItemViewType(position: Int): Int {
+        return if (orders[position].amount > 0) {
+            VIEW_TYPE_BID
+        } else {
+            VIEW_TYPE_ASK
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBookHolder {
-        return if (isBidItem) {
-            OrderBookHolder(
+        if (viewType == VIEW_TYPE_BID) {
+            return OrderBookHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.order_book_bid_item,
                     parent,
                     false
                 )
             )
-        } else {
-            OrderBookHolder(
+        } else if (viewType == VIEW_TYPE_ASK) {
+            return OrderBookHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.order_book_ask_item,
                     parent,
@@ -35,6 +46,7 @@ class OrderBookAdapter(private val isBidItem: Boolean) : RecyclerView.Adapter<Or
                 )
             )
         }
+        return super.createViewHolder(parent, viewType)
     }
 
     override fun getItemCount() = orders.size
