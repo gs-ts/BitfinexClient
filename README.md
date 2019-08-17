@@ -38,4 +38,4 @@ Sources: [1](https://medium.com/androiddevelopers/google-i-o-2018-app-architectu
 - [Timber](https://github.com/JakeWharton/timber), a logger which provides utility on top of Android’s Log class
 
 ##### Screenshots:
-![Screenshot_20190817-163211](https://user-images.githubusercontent.com/12731470/63213580-561db080-c10e-11e9-8369-687245facb11.png)
+<img src="https://user-images.githubusercontent.com/12731470/63213580-561db080-c10e-11e9-8369-687245facb11.png" width="400">
