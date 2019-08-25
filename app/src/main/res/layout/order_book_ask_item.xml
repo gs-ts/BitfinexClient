@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="#191919">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#191919">
 
     <TextView
             android:id="@+id/amount"
-            android:text="@string/amount_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/amount_text"
             android:textColor="#FFFFFF"
-            tools:text="amount"/>
+            tools:text="amount" />
 
     <TextView
             android:id="@+id/price"
-            android:text="@string/price_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/price_text"
             android:textColor="#FFFFFF"
-            tools:text="price"/>
+            tools:text="price" />
 </LinearLayout>

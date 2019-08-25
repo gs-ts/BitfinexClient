@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="ticker"
-                type="gts.bitfinex.presentation.model.Ticker"/>
+                type="gts.bitfinex.presentation.model.Ticker" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,81 +19,85 @@
                 android:id="@+id/tickerLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:columnCount="2"
+                android:orientation="horizontal"
                 android:rowCount="4"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                    android:text="@string/btc_usd_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_columnSpan="2"
                     android:layout_marginBottom="8dp"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
                     android:background="#FFA500"
+                    android:gravity="center"
+                    android:text="@string/btc_usd_title"
                     android:textColor="#FFFFFF"
-                    tools:text="BTC/USD"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="BTC/USD" />
 
             <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginStart="16dp"
                     android:text="@{`last price: ` + (ticker.lastPrice ?? `0`)}"
+                    android:textColor="#FFFFFF"
+                    tools:text="last price" />
+
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
                     android:layout_row="1"
-                    android:layout_column="0"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
                     android:layout_marginStart="16dp"
-                    android:textColor="#FFFFFF"
-                    tools:text="last price"/>
-            <TextView
                     android:text="@{`volume: ` + (ticker.volume ?? `0`)}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:layout_marginStart="16dp"
                     android:textColor="#FFFFFF"
-                    tools:text="volume"/>
+                    tools:text="volume" />
+
             <TextView
-                    android:text="@{`low: ` + (ticker.low ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
                     android:layout_row="2"
                     android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
                     android:layout_marginStart="16dp"
+                    android:text="@{`low: ` + (ticker.low ?? `0`)}"
                     android:textColor="#FFFFFF"
-                    tools:text="low"/>
+                    tools:text="low" />
+
             <TextView
-                    android:text="@{`high: ` + (ticker.high ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
                     android:layout_row="2"
                     android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
                     android:layout_marginStart="16dp"
+                    android:text="@{`high: ` + (ticker.high ?? `0`)}"
                     android:textColor="#FFFFFF"
-                    tools:text="high"/>
+                    tools:text="high" />
+
             <TextView
-                    android:text="@{`change: ` + (ticker.dailyChange ?? `0`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
                     android:layout_row="3"
                     android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
                     android:layout_marginStart="16dp"
+                    android:text="@{`change: ` + (ticker.dailyChange ?? `0`)}"
                     android:textColor="#FFFFFF"
-                    tools:text="change"/>
+                    tools:text="change" />
         </GridLayout>
 
         <GridLayout
@@ -101,54 +105,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal"
                 android:columnCount="2"
+                android:orientation="horizontal"
                 android:rowCount="2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintTop_toBottomOf="@+id/tickerLayout"
                 app:layout_constraintBottom_toTopOf="@+id/list_layout"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tickerLayout">
 
             <TextView
-                    android:text="@string/order_book_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
                     android:background="#FFA500"
+                    android:gravity="center"
+                    android:text="@string/order_book_title"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
                     android:textStyle="bold"
-                    tools:text="Order Book"/>
+                    tools:text="Order Book" />
 
             <TextView
-                    android:text="@string/bid_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:gravity="center"
-                    android:layout_columnWeight="1"
                     android:layout_row="1"
                     android:layout_column="0"
-                    android:textStyle="bold"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
                     android:background="#90EE90"
+                    android:gravity="center"
+                    android:text="@string/bid_label"
                     android:textColor="#FFFFFF"
-                    tools:text="bid"/>
+                    android:textStyle="bold"
+                    tools:text="bid" />
 
             <TextView
-                    android:text="@string/ask_label"
-                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:layout_columnWeight="1"
                     android:layout_row="1"
                     android:layout_column="1"
-                    android:textStyle="bold"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
                     android:background="#FFA07A"
+                    android:gravity="center"
+                    android:text="@string/ask_label"
                     android:textColor="#FFFFFF"
-                    tools:text="ask"/>
+                    android:textStyle="bold"
+                    tools:text="ask" />
         </GridLayout>
 
         <LinearLayout
@@ -156,31 +160,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintTop_toBottomOf="@+id/orderBookHeader"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/orderBookHeader">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/order_book_bid_list"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    tools:listitem="@layout/order_book_bid_item"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    android:layout_weight="1"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/order_book_bid_item" />
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/order_book_ask_list"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    tools:listitem="@layout/order_book_bid_item"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    android:layout_weight="1"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/order_book_bid_item" />
 
         </LinearLayout>
 
