@@ -25,14 +25,29 @@ import gts.bitfinex.domain.usecase.ObserveTickerUseCase
 import gts.bitfinex.domain.usecase.ObserveOrderBookUseCase
 import gts.bitfinex.presentation.ui.BitfinexViewModel
 
+// declare a module
 val appModule = module {
-    single { createAndroidLifecycle(get()) }
+    // Define single instance of AndroidLifecycle
+    // Resolve constructor dependencies with get(), here we need an Application object
+    single { createAndroidLifecycle(application = get()) }
+    // Define single instance of OkHttpClient
     single { createOkHttpClient() }
+    // Define single instance of Scarlet
+    // Resolve constructor dependencies with get(), here we need an OkHttpClient, and a lifecycle
     single { createScarlet(okHttpClient = get(), lifecycle = get()) }
+    // Define single instance of type BitfinexService (infered parameter in <>)
+    // Resolve constructor dependencies with get(), here we need the BitfinexApi
     single<BitfinexService> { BitfinexRepository(bitfinexApi = get()) }
 
+    // Define a factory (create a new instance each time) for ObserveTickerUseCase
+    // Resolve constructor dependency with get(), here we need the BitfinexService
     factory { ObserveTickerUseCase(bitfinexService = get()) }
+    // Define a factory (create a new instance each time) for ObserveOrderBookUseCase
+    // Resolve constructor dependency with get(), here we need the BitfinexService
     factory { ObserveOrderBookUseCase(bitfinexService = get()) }
+
+    // Define ViewModel and resolve constructor dependencies with get(),
+    // here we need ObserveTickerUseCase, and ObserveOrderBookUseCase
     viewModel {
         BitfinexViewModel(
             observeTickerUseCase = get(),
@@ -55,6 +70,7 @@ private val jsonMoshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
+// A Retrofit inspired WebSocket client for Kotlin, Java, and Android, that supports websockets.
 private fun createScarlet(okHttpClient: OkHttpClient, lifecycle: Lifecycle): BitfinexApi {
     return Scarlet.Builder()
         .webSocketFactory(okHttpClient.newWebSocketFactory(BitfinexApi.BASE_URI))

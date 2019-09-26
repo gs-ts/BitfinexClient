@@ -18,8 +18,11 @@ class BitfinexClientApplication: Application() {
         }
 
         startKoin {
+            // use AndroidLogger as Koin Logger - default Level.INFO
             androidLogger()
+            // use the Android context given there
             androidContext(this@BitfinexClientApplication)
+            // module list
             modules(listOf(appModule))
         }
     }
