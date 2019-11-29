@@ -46,11 +46,11 @@ class BitfinexFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.ticker.observe(this, Observer { ticker ->
+        viewModel.ticker.observe(viewLifecycleOwner, Observer { ticker ->
             binding.ticker = ticker
         })
 
-        viewModel.orderBooks.observe(this, Observer { orderBookList ->
+        viewModel.orderBooks.observe(viewLifecycleOwner, Observer { orderBookList ->
             orderBookBidAdapter.addOrderBooks(getOrderBookBidList(orderBookList))
             orderBookAskAdapter.addOrderBooks(getOrderBookAskList(orderBookList))
         })
