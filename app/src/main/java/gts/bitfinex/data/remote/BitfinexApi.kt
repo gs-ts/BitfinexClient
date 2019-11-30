@@ -1,4 +1,4 @@
-package gts.bitfinex.data.network
+package gts.bitfinex.data.remote
 
 import io.reactivex.Flowable
 
@@ -6,9 +6,9 @@ import com.tinder.scarlet.WebSocket
 import com.tinder.scarlet.ws.Receive
 import com.tinder.scarlet.ws.Send
 
-import gts.bitfinex.data.model.JsonResponse
-import gts.bitfinex.data.model.SubscribeTickerRequest
-import gts.bitfinex.data.model.SubscribeOrderBookRequest
+import gts.bitfinex.data.entity.JsonResponse
+import gts.bitfinex.data.entity.SubscribeTickerRequest
+import gts.bitfinex.data.entity.SubscribeOrderBookRequest
 
 interface BitfinexApi {
 

@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 
 import java.util.ArrayList
 
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 import gts.bitfinex.presentation.model.Ticker
 import gts.bitfinex.presentation.model.OrderBook
@@ -34,6 +36,7 @@ class BitfinexViewModel(
 
     init {
         compositeDisposable.add(observeTickerUseCase.invoke()
+            .observeOn(AndroidSchedulers.mainThread())
             .map { tickerData -> tickerData.toTickerModel() }
             .subscribe({ ticker ->
                 _ticker.postValue(ticker)
@@ -43,10 +46,12 @@ class BitfinexViewModel(
         )
 
         compositeDisposable.add(observeOrderBookUseCase.invoke()
+            .subscribeOn(Schedulers.computation())
             .map { orderBookData -> orderBookData.toOrderBookModel() }
             .map { orderBook ->
                 orderBook.buildOrderBooks()
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ orderBookList ->
                 _orderBooks.postValue(ArrayList(orderBookList))
             }, { e ->

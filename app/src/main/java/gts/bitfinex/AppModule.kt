@@ -18,9 +18,11 @@ import com.tinder.scarlet.messageadapter.moshi.MoshiMessageAdapter
 import com.tinder.scarlet.websocket.okhttp.newWebSocketFactory
 import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
 
-import gts.bitfinex.data.network.BitfinexApi
-import gts.bitfinex.data.network.BitfinexRepository
-import gts.bitfinex.domain.BitfinexService
+import gts.bitfinex.data.remote.BitfinexApi
+import gts.bitfinex.data.remote.BitfinexDataSource
+import gts.bitfinex.data.remote.BitfinexDataSourceImpl
+import gts.bitfinex.data.repository.BitfinexRepositoryImpl
+import gts.bitfinex.domain.BitfinexRepository
 import gts.bitfinex.domain.usecase.ObserveTickerUseCase
 import gts.bitfinex.domain.usecase.ObserveOrderBookUseCase
 import gts.bitfinex.presentation.ui.BitfinexViewModel
@@ -35,16 +37,23 @@ val appModule = module {
     // Define single instance of Scarlet
     // Resolve constructor dependencies with get(), here we need an OkHttpClient, and a lifecycle
     single { createScarlet(okHttpClient = get(), lifecycle = get()) }
+    // Define single instance of type BitfinexDataSource
+    // Resolve constructor dependencies with get(), here we need a BitfinexApi
+    single<BitfinexDataSource> { BitfinexDataSourceImpl(bitfinexApi = get()) }
     // Define single instance of type BitfinexService (infered parameter in <>)
     // Resolve constructor dependencies with get(), here we need the BitfinexApi
-    single<BitfinexService> { BitfinexRepository(bitfinexApi = get()) }
+    single<BitfinexRepository> {
+        BitfinexRepositoryImpl(
+            bitfinexDataSource = get()
+        )
+    }
 
     // Define a factory (create a new instance each time) for ObserveTickerUseCase
     // Resolve constructor dependency with get(), here we need the BitfinexService
-    factory { ObserveTickerUseCase(bitfinexService = get()) }
+    factory { ObserveTickerUseCase(bitfinexRepository = get()) }
     // Define a factory (create a new instance each time) for ObserveOrderBookUseCase
     // Resolve constructor dependency with get(), here we need the BitfinexService
-    factory { ObserveOrderBookUseCase(bitfinexService = get()) }
+    factory { ObserveOrderBookUseCase(bitfinexRepository = get()) }
 
     // Define ViewModel and resolve constructor dependencies with get(),
     // here we need ObserveTickerUseCase, and ObserveOrderBookUseCase

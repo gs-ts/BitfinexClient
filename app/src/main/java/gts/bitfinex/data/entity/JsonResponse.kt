@@ -1,4 +1,4 @@
-package gts.bitfinex.data.model
+package gts.bitfinex.data.entity
 
 import com.squareup.moshi.Json
 

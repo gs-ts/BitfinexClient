@@ -1,6 +1,6 @@
 package gts.bitfinex.domain.entities
 
-abstract class BaseSubscribeEntity(
+abstract class BaseSubscribe(
     open val event: String,
     open val channel: String,
     open val pair: String

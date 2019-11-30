@@ -7,9 +7,9 @@ import gts.bitfinex.domain.model.OrderBookData
 import gts.bitfinex.domain.entities.SubscribeTicker
 import gts.bitfinex.domain.entities.SubscribeOrderBook
 
-interface BitfinexService {
+interface BitfinexRepository {
 
-    fun subscribeAndObserveTicker(subscribeTicker: SubscribeTicker): Flowable<TickerData>
+    fun ObserveTicker(subscribeTicker: SubscribeTicker): Flowable<TickerData>
 
-    fun subscribeAndObserveOrderBook(subscribeOrderBook: SubscribeOrderBook): Flowable<OrderBookData>
+    fun ObserveOrderBook(subscribeOrderBook: SubscribeOrderBook): Flowable<OrderBookData>
 }
