@@ -34,11 +34,11 @@ class BitfinexFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         orderBookBidAdapter = OrderBookAdapter()
-        order_book_bid_list.layoutManager = LinearLayoutManager(activity)
+        order_book_bid_list.layoutManager = LinearLayoutManager(context)
         order_book_bid_list.adapter = orderBookBidAdapter
 
         orderBookAskAdapter = OrderBookAdapter()
-        order_book_ask_list.layoutManager = LinearLayoutManager(activity)
+        order_book_ask_list.layoutManager = LinearLayoutManager(context)
         order_book_ask_list.adapter = orderBookAskAdapter
     }
 
