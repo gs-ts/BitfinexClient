@@ -23,8 +23,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     dataBinding {
@@ -61,10 +65,11 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
 
-    implementation "com.github.tinder.scarlet:scarlet:$scarletVersion"
-    implementation "com.github.tinder.scarlet:scarlet-websocket-okhttp:$scarletVersion"
-    implementation "com.github.tinder.scarlet:scarlet-lifecycle-android:$scarletVersion"
-    implementation "com.github.tinder.scarlet:scarlet-message-adapter-moshi:$scarletVersion"
+    implementation "com.tinder.scarlet:scarlet:$scarletVersion"
+    implementation "com.tinder.scarlet:websocket-okhttp:$scarletVersion"
+    implementation "com.tinder.scarlet:lifecycle-android:$scarletVersion"
+    implementation "com.tinder.scarlet:stream-adapter-rxjava2:$scarletVersion"
+    implementation "com.tinder.scarlet:message-adapter-moshi:$scarletVersion"
 
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
 

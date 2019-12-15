@@ -14,7 +14,7 @@ buildscript {
         okhtttpInterceptorVersion = '4.2.2'
         rxAndroidVersion = '2.1.1'
         rxKotlinVersion = '2.2.0'
-        scarletVersion = '0.1.7'
+        scarletVersion = '0.1.9'
         moshiVersion = '1.9.2'
         timberVersion = '4.7.1'
     }
