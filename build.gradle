@@ -10,13 +10,20 @@ buildscript {
         materialVersion = '1.0.0'
         lifecycleVersion = "2.2.0-rc03"
         koinVersion = '2.0.1'
-        okhtttpVersion = '4.2.2'
-        okhtttpInterceptorVersion = '4.2.2'
+        okhtttpVersion = '4.3.0'
+        okhtttpInterceptorVersion = '4.3.0'
         rxAndroidVersion = '2.1.1'
         rxKotlinVersion = '2.2.0'
         scarletVersion = '0.1.9'
         moshiVersion = '1.9.2'
         timberVersion = '4.7.1'
+        junitVersion = '4.13'
+        androidxTestVersion = '1.2.0'
+        coreTestingVersion = '2.1.0'
+        mockitoVersion = '3.2.4'
+        mockitoKotlinVersion = '2.2.0'
+        testJunitVersion = '1.1.1'
+        espressoVersion = '3.2.0'
     }
 
     repositories {
