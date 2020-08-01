@@ -8,9 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 
-import kotlinx.android.synthetic.main.bitfinex_fragment.order_book_bid_list
-import kotlinx.android.synthetic.main.bitfinex_fragment.order_book_ask_list
-
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 import gts.bitfinex.databinding.BitfinexFragmentBinding
@@ -19,6 +16,7 @@ class BitfinexFragment : Fragment() {
 
     private val viewModel: BitfinexViewModel by viewModel()
     private lateinit var binding: BitfinexFragmentBinding
+
     private lateinit var orderBookBidAdapter: OrderBookAdapter
     private lateinit var orderBookAskAdapter: OrderBookAdapter
 
@@ -34,12 +32,12 @@ class BitfinexFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         orderBookBidAdapter = OrderBookAdapter()
-        order_book_bid_list.layoutManager = LinearLayoutManager(context)
-        order_book_bid_list.adapter = orderBookBidAdapter
+        binding.orderBookBidList.layoutManager = LinearLayoutManager(context)
+        binding.orderBookBidList.adapter = orderBookBidAdapter
 
         orderBookAskAdapter = OrderBookAdapter()
-        order_book_ask_list.layoutManager = LinearLayoutManager(context)
-        order_book_ask_list.adapter = orderBookAskAdapter
+        binding.orderBookAskList.layoutManager = LinearLayoutManager(context)
+        binding.orderBookAskList.adapter = orderBookAskAdapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

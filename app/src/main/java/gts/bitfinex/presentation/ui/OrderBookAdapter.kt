@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlin.math.absoluteValue
 
-import kotlinx.android.synthetic.main.order_book_bid_item.view.amount
-import kotlinx.android.synthetic.main.order_book_bid_item.view.price
-
 import gts.bitfinex.R
 import gts.bitfinex.presentation.model.OrderBook
+import gts.bitfinex.databinding.OrderBookBidItemBinding
 
 private const val VIEW_TYPE_BID = 0
 private const val VIEW_TYPE_ASK = 1
@@ -65,7 +63,7 @@ class OrderBookAdapter : RecyclerView.Adapter<OrderBookHolder>() {
 class OrderBookHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindItems(order: OrderBook) = with(view) {
-        amount.text = order.amount.absoluteValue.toString()
-        price.text = order.price.toString()
+        OrderBookBidItemBinding.bind(view).amount.text = order.amount.absoluteValue.toString()
+        OrderBookBidItemBinding.bind(view).price.text = order.price.toString()
     }
 }

@@ -12,8 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#191919"
-            tools:context=".ui.fragments.BitfinexFragment">
+            android:background="#191919">
 
         <GridLayout
                 android:id="@+id/tickerLayout"

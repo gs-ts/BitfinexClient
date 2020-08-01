@@ -30,6 +30,10 @@ android {
         enabled = true
     }
 
+    viewBinding {
+        enabled = true
+    }
+
     testOptions {
         unitTests.returnDefaultValues = true
     }
