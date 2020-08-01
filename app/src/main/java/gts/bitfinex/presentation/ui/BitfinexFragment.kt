@@ -15,7 +15,9 @@ import gts.bitfinex.databinding.BitfinexFragmentBinding
 class BitfinexFragment : Fragment() {
 
     private val viewModel: BitfinexViewModel by viewModel()
-    private lateinit var binding: BitfinexFragmentBinding
+    private var _binding: BitfinexFragmentBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
 
     private lateinit var orderBookBidAdapter: OrderBookAdapter
     private lateinit var orderBookAskAdapter: OrderBookAdapter
@@ -24,7 +26,7 @@ class BitfinexFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = BitfinexFragmentBinding.inflate(inflater, container, false)
+        _binding = BitfinexFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,6 +54,11 @@ class BitfinexFragment : Fragment() {
             orderBookBidAdapter.addOrderBooks(getOrderBookBidList(orderBookList))
             orderBookAskAdapter.addOrderBooks(getOrderBookAskList(orderBookList))
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
