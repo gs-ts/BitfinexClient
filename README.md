@@ -15,10 +15,12 @@ Clean architecture consists of three layers:
 Each layer has its own entities/models which are specific to that package. Mapper is used for conversion of one layer to another.
 
 ##### Android Jetpack Components used:
+- Activity
 - Fragment
 - ViewModel 
 - LiveData 
-- Data Binding 
+- View Binding (used to replace `findViewById` and synthetic binding)
+- Data Binding (used for [Layouts and binding expressions](https://developer.android.com/topic/libraries/data-binding/expressions)), example: [binding expression](https://github.com/gs-ts/BitfinexClient/blob/master/app/src/main/res/layout/bitfinex_fragment.xml#L49)
 - ActivityScenario, for instrumentation test (part of AndroidX Test) 
 - Espresso
 
