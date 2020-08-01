@@ -19,8 +19,8 @@ import com.tinder.scarlet.websocket.okhttp.newWebSocketFactory
 import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
 
 import gts.bitfinex.data.remote.BitfinexApi
-import gts.bitfinex.data.remote.BitfinexDataSource
-import gts.bitfinex.data.remote.BitfinexDataSourceImpl
+import gts.bitfinex.data.remote.BitfinexClient
+import gts.bitfinex.data.remote.BitfinexClientImpl
 import gts.bitfinex.data.repository.BitfinexRepositoryImpl
 import gts.bitfinex.domain.BitfinexRepository
 import gts.bitfinex.domain.usecase.ObserveTickerUseCase
@@ -39,12 +39,12 @@ val appModule = module {
     single { createScarlet(okHttpClient = get(), lifecycle = get()) }
     // Define single instance of type BitfinexDataSource
     // Resolve constructor dependencies with get(), here we need a BitfinexApi
-    single<BitfinexDataSource> { BitfinexDataSourceImpl(bitfinexApi = get()) }
+    single<BitfinexClient> { BitfinexClientImpl(bitfinexApi = get()) }
     // Define single instance of type BitfinexService (infered parameter in <>)
     // Resolve constructor dependencies with get(), here we need the BitfinexApi
     single<BitfinexRepository> {
         BitfinexRepositoryImpl(
-            bitfinexDataSource = get()
+            bitfinexClient = get()
         )
     }
 

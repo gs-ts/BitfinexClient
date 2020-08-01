@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 import gts.bitfinex.data.entity.SubscribeTickerRequest
 import gts.bitfinex.data.entity.SubscribeOrderBookRequest
 
-interface BitfinexDataSource {
+interface BitfinexClient {
 
     fun subscribeTicker(subscribeTickerRequest: SubscribeTickerRequest): Flowable<Array<String>>
 

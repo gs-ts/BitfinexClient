@@ -13,7 +13,7 @@ import gts.bitfinex.data.entity.SubscribeOrderBookRequest
 import timber.log.Timber
 
 @SuppressLint("CheckResult")
-class BitfinexDataSourceImpl(private val bitfinexApi: BitfinexApi) : BitfinexDataSource {
+class BitfinexClientImpl(private val bitfinexApi: BitfinexApi) : BitfinexClient {
 
     private val TICKER_SNAPSHOT_SIZE = 11 // https://docs.bitfinex.com/reference#ws-public-ticker
     private val ORDERBOOK_SNAPSHOT_SIZE = 4

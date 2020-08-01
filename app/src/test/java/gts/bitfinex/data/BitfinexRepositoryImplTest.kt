@@ -7,7 +7,7 @@ import org.mockito.Mockito.mock
 
 import io.reactivex.Flowable
 
-import gts.bitfinex.data.remote.BitfinexDataSource
+import gts.bitfinex.data.remote.BitfinexClient
 import gts.bitfinex.data.entity.toSubcribeTickerRequest
 import gts.bitfinex.data.entity.toSubcribeOrderBookrRequest
 import gts.bitfinex.data.repository.BitfinexRepositoryImpl
@@ -18,13 +18,13 @@ import org.junit.Ignore
 
 class BitfinexRepositoryImplTest {
 
-    private lateinit var bitfinexDataSource: BitfinexDataSource
+    private lateinit var bitfinexClient: BitfinexClient
     private lateinit var bitfinexRepositoryImpl: BitfinexRepositoryImpl
 
     @Before
     fun before() {
-        bitfinexDataSource = mock(BitfinexDataSource::class.java)
-        bitfinexRepositoryImpl = BitfinexRepositoryImpl(bitfinexDataSource)
+        bitfinexClient = mock(BitfinexClient::class.java)
+        bitfinexRepositoryImpl = BitfinexRepositoryImpl(bitfinexClient)
     }
 
     @Test
@@ -50,7 +50,7 @@ class BitfinexRepositoryImplTest {
             "low"
         )
 
-        Mockito.`when`(bitfinexDataSource.subscribeTicker(subscribeTicker.toSubcribeTickerRequest()))
+        Mockito.`when`(bitfinexClient.subscribeTicker(subscribeTicker.toSubcribeTickerRequest()))
             .thenReturn(Flowable.just(tickerArray))
 
         bitfinexRepositoryImpl.ObserveTicker(subscribeTicker).test()
@@ -98,7 +98,7 @@ class BitfinexRepositoryImplTest {
             1000.5 // amount
         )
 
-        Mockito.`when`(bitfinexDataSource.subscribeOrderBook(subscribeOrderBook.toSubcribeOrderBookrRequest()))
+        Mockito.`when`(bitfinexClient.subscribeOrderBook(subscribeOrderBook.toSubcribeOrderBookrRequest()))
             .thenReturn(Flowable.just(orderBookArray))
 
         bitfinexRepositoryImpl.ObserveOrderBook(subscribeOrderBook).test()
