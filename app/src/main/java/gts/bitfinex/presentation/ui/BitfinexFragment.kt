@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,7 +15,7 @@ class BitfinexFragment : Fragment() {
 
     private val viewModel: BitfinexViewModel by viewModel()
     private var _binding: BitfinexFragmentBinding? = null
-    // This property is only valid between onCreateView and onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView
     private val binding get() = _binding!!
 
     private lateinit var orderBookBidAdapter: OrderBookAdapter
@@ -34,11 +33,9 @@ class BitfinexFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         orderBookBidAdapter = OrderBookAdapter()
-        binding.orderBookBidList.layoutManager = LinearLayoutManager(context)
         binding.orderBookBidList.adapter = orderBookBidAdapter
 
         orderBookAskAdapter = OrderBookAdapter()
-        binding.orderBookAskList.layoutManager = LinearLayoutManager(context)
         binding.orderBookAskList.adapter = orderBookAskAdapter
     }
 
@@ -51,8 +48,8 @@ class BitfinexFragment : Fragment() {
         })
 
         viewModel.orderBooks.observe(viewLifecycleOwner, Observer { orderBookList ->
-            orderBookBidAdapter.addOrderBooks(getOrderBookBidList(orderBookList))
-            orderBookAskAdapter.addOrderBooks(getOrderBookAskList(orderBookList))
+            orderBookBidAdapter.submitList(getOrderBookBidList(orderBookList))
+            orderBookAskAdapter.submitList(getOrderBookAskList(orderBookList))
         })
     }
 

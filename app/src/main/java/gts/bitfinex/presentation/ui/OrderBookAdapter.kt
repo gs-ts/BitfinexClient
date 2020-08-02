@@ -3,67 +3,49 @@ package gts.bitfinex.presentation.ui
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import gts.bitfinex.R
 
 import kotlin.math.absoluteValue
 
-import gts.bitfinex.R
 import gts.bitfinex.presentation.model.OrderBook
 import gts.bitfinex.databinding.OrderBookBidItemBinding
 
-private const val VIEW_TYPE_BID = 0
-private const val VIEW_TYPE_ASK = 1
+class OrderBookAdapter : ListAdapter<OrderBook, OrderBookAdapter.OrderBookViewHolder>(DiffCallback()) {
 
-class OrderBookAdapter : RecyclerView.Adapter<OrderBookHolder>() {
+    class DiffCallback : DiffUtil.ItemCallback<OrderBook>() {
 
-    private val orders: ArrayList<OrderBook> = ArrayList()
+        override fun areItemsTheSame(oldItem: OrderBook, newItem: OrderBook) = when {
+            newItem.amount > 0 -> oldItem == newItem // bid type
+            newItem.amount < 0 -> oldItem == newItem // ask type
+            else -> oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: OrderBook, newItem: OrderBook) = oldItem == newItem
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        OrderBookViewHolder(LayoutInflater.from(parent.context).inflate(viewType, parent, false))
 
     override fun getItemViewType(position: Int): Int {
-        return if (orders[position].amount > 0) {
-            VIEW_TYPE_BID
+        return if (getItem(position).amount > 0) {
+            R.layout.order_book_bid_item
         } else {
-            VIEW_TYPE_ASK
+            R.layout.order_book_ask_item
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBookHolder {
-        if (viewType == VIEW_TYPE_BID) {
-            return OrderBookHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    R.layout.order_book_bid_item,
-                    parent,
-                    false
-                )
-            )
-        } else if (viewType == VIEW_TYPE_ASK) {
-            return OrderBookHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    R.layout.order_book_ask_item,
-                    parent,
-                    false
-                )
-            )
+    override fun onBindViewHolder(viewHolder: OrderBookViewHolder, position: Int) {
+        viewHolder.bindOrderBookItems(getItem(position))
+    }
+
+    class OrderBookViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+
+        fun bindOrderBookItems(order: OrderBook) = with(OrderBookBidItemBinding.bind(view)) {
+            amount.text = order.amount.absoluteValue.toString()
+            price.text = order.price.toString()
         }
-        return super.createViewHolder(parent, viewType)
-    }
-
-    override fun getItemCount() = orders.size
-
-    override fun onBindViewHolder(holder: OrderBookHolder, position: Int) {
-        holder.bindItems(orders[position])
-    }
-
-    fun addOrderBooks(orderBooks: List<OrderBook>) {
-        orders.clear()
-        orders.addAll(orderBooks)
-        notifyDataSetChanged()
-    }
-}
-
-class OrderBookHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-
-    fun bindItems(order: OrderBook) = with(view) {
-        OrderBookBidItemBinding.bind(view).amount.text = order.amount.absoluteValue.toString()
-        OrderBookBidItemBinding.bind(view).price.text = order.price.toString()
     }
 }

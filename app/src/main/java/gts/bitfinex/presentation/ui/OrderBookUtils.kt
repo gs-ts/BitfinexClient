@@ -4,7 +4,7 @@ import java.util.TreeMap
 import kotlin.collections.ArrayList
 import gts.bitfinex.presentation.model.OrderBook
 
-private const val LIST_SIZE = 20
+private const val LIST_SIZE = 10
 private val orderBooksByPrice: TreeMap<Double, OrderBook> = TreeMap()
 
 fun OrderBook.buildOrderBooks(): List<OrderBook> {
